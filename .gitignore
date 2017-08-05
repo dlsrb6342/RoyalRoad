@@ -1,0 +1,6 @@
+settings.py
+migrations
+rest_framwork
+admin
+db.sqlite3
+__pycache__

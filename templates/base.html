@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--meta-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!--css and fonts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.7/semantic.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanummyeongjo.css">
+    <!--jquery and  semantic scripts-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!--<script src="/static/js/base.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.7/semantic.min.js"></script>
+    <!--custom style-->
+     <script>
+     var noti_timer_id=0;
+      $(document)
+        .ready(function() {
+        });
+      function more_noti(pk){
+           $.ajax({
+          type:'POST',
+          url : '/notification/',
+          data : {
+              'dd':pk,
+              'flag' : 'noti-scrolling',
+          },success : function(result){
+              result['data']
+          },error:function(error){}
+          });
+      }
+      $(document).ready(function(){
+          $('#id_q').keyup(function(){
+              if($('#id_q').val()=='') {
+                  $('#SearchResult').html('')
+                  return;
+              }
+              $.ajax({
+                  type: 'POST',
+                  url: '/search/',
+                  data: {
+                      'flag': 'search',
+                      'q': $('#id_q').val(),
+                      'csrfmiddlewaretoken': '{{csrf_token}}'
+                  },
+                  success : function(result) {
+                      if(result['flag']){
+                          var res_list = result['results']
+                          search_scroll = result['next_page']
+                          var string = ''
+                          for(i = 0; i < res_list.length; i ++){
+                              var res = res_list[i]
+                              if (res.Title != null)
+                                  string += '<p><a class="item" href="/posts/'+ res.id + '"><div class="ui violet horizontal label">post</div>'+res.Title+'</a></p>'
+                              else if (res.Admin != null)
+                                  string += '<p><a class="item" href="/channel/'+ res.Admin + '"><div class="ui pink horizontal label">channel</div>'+res.Admin+'</a></p>'
+                              else if (res.Name != null)
+                                  string += '<p><a class="item" href="/tag/'+ res.Name.substring(1, res.Name.length) + '"><div class="ui red horizontal label">tag</div>'+res.Name+'</a></p>'
+                          }
+                          $("#SearchResult").html(string)
+                      }
+                  }
+              })
+          })
+      })
+  </script>
+  <style>
+  </style>
+</head>
+<body>
+<div class="ui main container">
+  <div>
+      <label class="ui big blue label" for="id_q">Search:</label>
+      <br>
+      <br>
+      <div class="ui icon input">
+          <input type="text" placeholder="Search..." id="id_q" name="q" type="search"/>
+          <i class="search icon"></i>
+      </div>
+      <div class="ui divider"></div>
+      <label class="ui large green label" for="SearchResult">results:</label>
+      <br>
+      <br>
+      <div id="SearchResult"></div>
+  </div>
+</div>
+</body>
+</html>
