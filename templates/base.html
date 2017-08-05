@@ -15,7 +15,7 @@
       $(document).ready(function(){
           $('#query').keyup(function(){
               if($('#query').val()=='') {
-                  $('#auto_result').html('')
+                  $('#results').html('')
                   return;
               }
               $.ajax({
@@ -26,13 +26,14 @@
                   },
                   success : function(result) {
                       if(result['flag']){
-                          console.log(result['data'])
+                          $('#results').html('')
                           let data = result['data']
                           for(let item of data){
                             let aaa = $('<a>')
                             aaa.attr('class','item')
                             aaa.html(item['code']+' '+item['name'])
                             aaa.on('click',()=>{location.href="data/?course_code="+item['code']})
+                            aaa.appendTo('#results')
                           }
                       }
                   },error:function(error){

@@ -51,8 +51,8 @@ def add_code():
     for data in Data.objects.all():
         taken_course_name = data.taken_course
         related_course_name = data.related_course
-        taken_course = Course.objects.get(name=taken_course_name)
-        related_course = Course.objects.get(name=related_course_name)
+        taken_course = Course.objects.filter(name=taken_course_name)[0]
+        related_course = Course.objects.filter(name=related_course_name)[0]
 
         data.taken_course_code = taken_course.code
         data.related_course_code = related_course.code

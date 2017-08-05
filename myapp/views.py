@@ -3,13 +3,14 @@ from django.shortcuts import get_object_or_404
 from myapp.serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.http import JsonResponse
 from rest_framework.renderers import TemplateHTMLRenderer
 from haystack.query import SearchQuerySet
 
 
 class MainView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'myapp/base.html'
+    template_name = 'base.html'
 
     def get(self, request):
         return Response()
@@ -17,24 +18,10 @@ class MainView(APIView):
 
 class DataView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'myapp/search.html'
+    template_name = 'search.html'
 
     def get(self, request):
-        course_code = request.data.get('course_code')
-        course = get_object_or_404(Course, code=course_code)
-        course_name = course.name
-        data = dict()
-
-        data['course_name'] = course_name
-        data['0'] = dataQuery(course_name, 0)
-        data['1'] = dataQuery(course_name, 1)
-        data['2'] = dataQuery(course_name, 2)
-        data['3'] = dataQuery(course_name, 3)
-        data['-1'] = dataQuery(course_name, -1)
-        data['-2'] = dataQuery(course_name, -2)
-        data['-3'] = dataQuery(course_name, -3)
-
-        return Response(data)
+        return Response()
 
     def post(self, request):
         course_code = request.data.get('course_code')
@@ -45,6 +32,7 @@ class DataView(APIView):
         data = dict()
 
         data['course_name'] = course_name
+        data['course_code'] = course_code
 
         if function_code == 'after':
             data['0'] = dataQuery(course_name, 0)
@@ -65,7 +53,15 @@ class DataView(APIView):
             data['-2'] = dataQuery(course_name, -2)
             data['-3'] = dataQuery(course_name, -3)
 
-        return Response(data)
+        return JsonResponse(data)
+
+
+class SearchView(APIView):
+    def post(self, request):
+        search_string = request.data.get('q')
+        search_result = search(search_string)
+
+        return Response({'data': search_result, 'flag': True})
 
 
 def dataQuery(course_name, diff):
@@ -75,13 +71,6 @@ def dataQuery(course_name, diff):
         datas.append(d)
 
     return DataSerializer(datas, many=True).data
-
-class SearchView(APIView):
-    def post(self, request):
-        search_string = request.data.get('q')
-        search_result = search(search_string)
-
-        return Response({'data': search_result, 'flag': True})
 
 
 def search(q):

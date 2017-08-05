@@ -36,4 +36,4 @@ class DataSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Data 
-		fields = ('rate', 'diff', 'taken_course', 'related_course')
+		fields = ('rate', 'diff', 'taken_course', 'related_course', 'taken_course_code', 'related_course_code')
