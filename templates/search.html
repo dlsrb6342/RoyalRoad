@@ -50,13 +50,31 @@
           }); <!-- end-->
 
     function after_result(result){
-     let after_result()
+      $('#main').empty()
+     let after_result = dummy;
+     let header_div= $('<div>')
+     header_div.attr('class',"ui blue center aligned header")
+     header_div.attr('style',"font-size:3em; margin:auto ;width:50%")
+     let current_div=$('<i class="left chevron icon"></i>'+
+     '<div class="content"><i class="desktop icon"></i>'+
+          result[0].name+'</div><i class="right chevron yellow icon"></i>')
+     current_div.appendTo(header_div)
+     header_div.appendTo('#main')
+     let before_one=$('<div class="ui horizontal divider">다음 학기 들은 수업</div>')
+     let before_two=$('<div class="ui horizontal divider">다다음 학기 들은 수업</div>')
+     let before_one=$('<div class="ui horizontal divider">다다다음 학기 들은 수업</div>')
+     before_one.appendTo('#main')
+     grid_maker(result[1]).appendTo('#main')
+     gird_maker(result[2]).appendTo('#main')
 
     }
     function before_result(result){
 
     }
     function whole_result(result){
+
+    }
+    function grid_maker(subresult){
 
     }
 
@@ -96,9 +114,7 @@
       <div class="content"><i class="desktop icon"></i>CS374 Intro to HCI</div>
       <i class="right chevron yellow icon"></i>
     </div>
-    <br>
     <div class="ui horizontal divider">다음 학기 들은 수업</div>
-    <br>
     <div class="ui grid">
       <div class="four wide column">
         <h2 class="ui icon header">
