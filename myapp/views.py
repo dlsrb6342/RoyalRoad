@@ -14,6 +14,8 @@ class DataView(APIView):
         course_name = course.name
         data = dict()
 
+        data['course_name'] = course_name
+
         if function_code == 'after':
             data['0'] = dataQuery(course_name, 0)
             data['1'] = dataQuery(course_name, 1)

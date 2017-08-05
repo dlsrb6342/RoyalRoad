@@ -57,18 +57,18 @@
       header_div.attr('style',"font-size:3em; margin:auto ;width:50%")
       let current_div=$('<i class="left chevron icon"></i>'+
         '<div class="content"><i class="desktop icon"></i>'+
-        result[0].name+'</div><i class="right chevron yellow icon"></i>')
+        result['course_name']+'</div><i class="right chevron yellow icon"></i>')
       current_div.appendTo(header_div)
       header_div.appendTo('#main')
       let before_one=$('<div class="ui horizontal divider">다음 학기 들은 수업</div>')
       let before_two=$('<div class="ui horizontal divider">다다음 학기 들은 수업</div>')
       let before_three=$('<div class="ui horizontal divider">다다다음 학기 들은 수업</div>')
       before_one.appendTo('#main')
-      grid_maker(result[1]).appendTo('#main')
+      grid_maker(result['1']).appendTo('#main')
       before_two.appendTo('#main')
-      grid_maker(result[2]).appendTo('#main')
+      grid_maker(result['2']).appendTo('#main')
       before_three.appendTo('#main')
-      grid_maker(result[3]).appendTo('#main')
+      grid_maker(result['3']).appendTo('#main')
     }
     function before_result(result){
       $('#main').empty()
@@ -78,18 +78,18 @@
       header_div.attr('style',"font-size:3em; margin:auto ;width:50%")
       let current_div=$('<i class="left chevron yellow icon"></i>'+
         '<div class="content"><i class="desktop icon"></i>'+
-        result[0].name+'</div><i class="right chevron icon"></i>')
+        result['course_name']+'</div><i class="right chevron icon"></i>')
       current_div.appendTo(header_div)
       header_div.appendTo('#main')
       let before_one=$('<div class="ui horizontal divider">전 학기 들은 수업</div>')
       let before_two=$('<div class="ui horizontal divider">전전 학기 들은 수업</div>')
       let before_three=$('<div class="ui horizontal divider">전전전 학기 들은 수업</div>')
       before_one.appendTo('#main')
-      grid_maker(result[1]).appendTo('#main')
+      grid_maker(result['-1']).appendTo('#main')
       before_two.appendTo('#main')
-      grid_maker(result[2]).appendTo('#main')
+      grid_maker(result['-2']).appendTo('#main')
       before_three.appendTo('#main')
-      grid_maker(result[3]).appendTo('#main')
+      grid_maker(result['-3']).appendTo('#main')
     }
     function whole_result(result){
       $('#main').empty()
@@ -99,31 +99,32 @@
       header_div.attr('style',"font-size:3em; margin:auto ;width:50%")
       let current_div=$('<i class="left chevron yellow icon"></i>'+
         '<div class="content"><i class="desktop icon"></i>'+
-        result[0].name+'</div><i class="right chevron yellow icon"></i>')
+        result['course_name']+'</div><i class="right chevron yellow icon"></i>')
       current_div.appendTo(header_div)
       header_div.appendTo('#main')
       let before_one=$('<div class="ui horizontal divider">전 학기 들은 수업</div>')
       let before_two=$('<div class="ui horizontal divider">전전 학기 들은 수업</div>')
       let before_three=$('<div class="ui horizontal divider">전전전 학기 들은 수업</div>')
       before_three.appendTo('#main')
-      grid_maker(result[1]).appendTo('#main')
+      grid_maker(result['-3']).appendTo('#main')
       before_two.appendTo('#main')
-      grid_maker(result[2]).appendTo('#main')
+      grid_maker(result['-2']).appendTo('#main')
       before_one.appendTo('#main')
-      grid_maker(result[3]).appendTo('#main')
+      grid_maker(result['-1']).appendTo('#main')
 
       let current_one=$('<div class="ui horizontal divider">같은 학기 들은 수업</div>')
-      grid_make(result[3]).appendTo('#main')
+      current_one.appendTo('#main')
+      grid_make(result['0']).appendTo('#main')
 
       let before_one=$('<div class="ui horizontal divider">다음 학기 들은 수업</div>')
       let before_two=$('<div class="ui horizontal divider">다다음 학기 들은 수업</div>')
       let before_three=$('<div class="ui horizontal divider">다다다음 학기 들은 수업</div>')
       before_one.appendTo('#main')
-      grid_maker(result[1]).appendTo('#main')
+      grid_maker(result['1']).appendTo('#main')
       before_two.appendTo('#main')
-      grid_maker(result[2]).appendTo('#main')
+      grid_maker(result['2']).appendTo('#main')
       before_three.appendTo('#main')
-      grid_maker(result[3]).appendTo('#main')
+      grid_maker(result['3']).appendTo('#main')
 
     }
     function grid_maker(subresult){
@@ -132,26 +133,26 @@
       let column_one = $('<div class="four wide column">'+
         '<h2 class="ui icon header">'+
           '<i class="trophy yellow icon"></i>'+
-          '<div class="content">'+subresult[1]["taken_course"]+
+          '<div class="content">'+subresult[0]["taken_course"]+
             '<div class="sub header"><a>이전학기</a>  or <a>다음학기</a></div></div></h2></div>')
       let column_two = $('<div class="four wide column">'+
         '<h2 class="ui icon header">'+
           '<i class="trophy grey icon"></i>'+
-          '<div class="content">'+subresult[2]["taken_course"]+
+          '<div class="content">'+subresult[1]["taken_course"]+
             '<div class="sub header">'+
             '<a>이전학기</a>  or <a>다음학기</a>'+
             '</div></div></h2></div>')
       let column_three = $('<div class="four wide column">'+
         '<h2 class="ui icon header">'+
           '<i class="trophy brown icon"></i>'+
-          '<div class="content">'+subresult[3]["taken_course"]+
+          '<div class="content">'+subresult[2]["taken_course"]+
             '<div class="sub header">'+
             '<a>이전학기</a>  or <a>다음학기</a>'+
             '</div></div></h2></div>')
       let column_four = $('<div class="four wide column">'+
         '<h2 class="ui icon header">'+
           '<i class="foursquaure icon"></i>'+
-          '<div class="content">'+subresult[4]["taken_course"]+
+          '<div class="content">'+subresult[3]["taken_course"]+
             '<div class="sub header">'+
             '<a>이전학기</a>  or <a>다음학기</a>'+
             '</div></div></h2></div>')
