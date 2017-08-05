@@ -22,11 +22,10 @@
               }
               $.ajax({
                   type: 'POST',
-                  url: '/search/',
+                  url: '/searchbase/',
                   data: {
-                      'flag': 'search',
+                      'flag': 'searchbase',
                       'q': $('#id_q').val(),
-                      'csrfmiddlewaretoken': '{{csrf_token}}'
                   },
                   success : function(result) {
                       if(result['flag']){}
