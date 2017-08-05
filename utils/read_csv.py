@@ -12,7 +12,7 @@ def read_csv():
                     TakenList.objects.create(
                         student_id = id,
                         semester = semester,
-                        course_list = { 'data': course_list }
+                        course_list = course_list
                     ).save()
                 first = False; id = row['학번']; semester = 1; course_list = []
                 time = row['연도'] + row['학기'] 

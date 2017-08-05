@@ -22,18 +22,18 @@
                   type: 'POST',
                   url: '/auto/',
                   data: {
-                      'flag': 'auto',
                       'q': $('#query').val(),
                   },
                   success : function(result) {
-                      if(result['flag']){}
-                          $("#search_result").html(string)
+                      if(result['flag']){
+                          console.log(result['data'])
+                      }
                   },error:function(error){
                     console.log(error);
                   }
-                })
               })
-          }); <!-- end-->
+          })
+       }); <!-- end-->
   </script>
   <style type="text/css">
     body > .grid {

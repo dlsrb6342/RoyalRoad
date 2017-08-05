@@ -49,20 +49,22 @@ def dataQuery(course_name, diff):
 
 class SearchView(APIView):
     def post(self, request):
-        search_string = request.data.get('search_string')
+        search_string = request.data.get('q')
         search_result = search(search_string)
 
         return Response({'data': search_result, 'flag': True})
 
 
 def search(q):
-    sqs_name = SearchQuerySet().autocomplete(name=q)
-    sqs_code = SearchQuerySet().autocomplete(code=q)
+    sqs_name = SearchQuerySet().autocomplete(name__startswith=q)[:7]
+    sqs_code = SearchQuerySet().autocomplete(code__startswith=q)[:7]
 
     suggestions = []
 
-    for r1, r2 in zip(sqs_name, sqs_code):
-        suggestions.append({ "code": r1.code, "name": r1.name })
-        suggestions.append({ "code": r2.code, "name": r2.name })
+    for r in sqs_name:
+        suggestions.append({ "code": r.code, "name": r.name })
+
+    for r in sqs_code:
+        suggestions.append({ "code": r.code, "name": r.name })
 
     return suggestions
