@@ -14,26 +14,10 @@
     <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.7/semantic.min.js"></script>
     <!--custom style-->
      <script>
-     var noti_timer_id=0;
-      $(document)
-        .ready(function() {
-        });
-      function more_noti(pk){
-           $.ajax({
-          type:'POST',
-          url : '/notification/',
-          data : {
-              'dd':pk,
-              'flag' : 'noti-scrolling',
-          },success : function(result){
-              result['data']
-          },error:function(error){}
-          });
-      }
       $(document).ready(function(){
           $('#id_q').keyup(function(){
               if($('#id_q').val()=='') {
-                  $('#SearchResult').html('')
+                  $('#search_result').html('')
                   return;
               }
               $.ajax({
@@ -45,44 +29,34 @@
                       'csrfmiddlewaretoken': '{{csrf_token}}'
                   },
                   success : function(result) {
-                      if(result['flag']){
-                          var res_list = result['results']
-                          search_scroll = result['next_page']
-                          var string = ''
-                          for(i = 0; i < res_list.length; i ++){
-                              var res = res_list[i]
-                              if (res.Title != null)
-                                  string += '<p><a class="item" href="/posts/'+ res.id + '"><div class="ui violet horizontal label">post</div>'+res.Title+'</a></p>'
-                              else if (res.Admin != null)
-                                  string += '<p><a class="item" href="/channel/'+ res.Admin + '"><div class="ui pink horizontal label">channel</div>'+res.Admin+'</a></p>'
-                              else if (res.Name != null)
-                                  string += '<p><a class="item" href="/tag/'+ res.Name.substring(1, res.Name.length) + '"><div class="ui red horizontal label">tag</div>'+res.Name+'</a></p>'
-                          }
-                          $("#SearchResult").html(string)
-                      }
+                      if(result['flag']){}
+                          $("#search_result").html(string)
+                  },error:function(error){
+                    console.log(error);
                   }
+                })
               })
-          })
-      })
+          }); <!-- end-->
   </script>
-  <style>
+  <style type="text/css">
+    body > .grid {
+    height: 100%;
+  }
   </style>
 </head>
 <body>
-<div class="ui main container">
-  <div>
-      <label class="ui big blue label" for="id_q">Search:</label>
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+      <label class="ui huge yellow header" style="font-family:Lobster;font-size:6em;">Royal Load</label>
       <br>
       <br>
       <div class="ui icon input">
-          <input type="text" placeholder="Search..." id="id_q" name="q" type="search"/>
+          <input type="text" placeholder="Search..." id="id_q" type="search"/>
           <i class="search icon"></i>
       </div>
-      <div class="ui divider"></div>
-      <label class="ui large green label" for="SearchResult">results:</label>
       <br>
       <br>
-      <div id="SearchResult"></div>
+      <div id="search_result"></div>
   </div>
 </div>
 </body>
