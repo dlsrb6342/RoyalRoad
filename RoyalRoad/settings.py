@@ -76,19 +76,18 @@ WSGI_APPLICATION = 'RoyalRoad.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-import pymysql
-pymysql.install_as_MySQLdb()
-
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.mysql'),
-        'HOST': os.environ.get('DB_HOST', ''),
-        'NAME': os.environ.get('DB_NAME', ''),
-        'USER': os.environ.get('DB_USER', ''),
-        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
-        'PORT': os.environ.get('DB_PORT', 3306),
-    },
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'royalroad',
+        'USER': 'askdjango',
+        'PASSWORD': 'askdjango',
+        'HOST': '125.130.66.85',
+        'PORT': 5432
+    }
 }
+DATABASE_OPTIONS = {'charset': 'utf-8'} 
+
 
 
 # Password validation

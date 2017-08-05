@@ -1,20 +1,30 @@
 import csv 
 from random import randint
-from myapp.models import Taken, Major, Course
+from myapp.models import Taken, Major, Course, TakenList
 
 def read_csv():
     with open('./utils/db.csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
-        id = 0; time = ''; semester = 0
+        id = 0; time = ''; semester = 0; course_list = []; first = True
         for row in reader:
             if id != row['학번']:
-                id = row['학번']
-                semester = 1
+                if not first:
+                    TakenList.objects.create(
+                        student_id = id,
+                        semester = semester,
+                        course_list = { 'data': course_list }
+                    ).save()
+                first = False; id = row['학번']; semester = 1; course_list = []
                 time = row['연도'] + row['학기'] 
             elif row['학기'] == '1' or row['학기'] == '3':
                 if time != row['연도'] + row['학기']: 
                     time = row['연도'] + row['학기']
-                    semester += 1
+                    TakenList.objects.create(
+                        student_id = id,
+                        semester = semester,
+                        course_list = course_list
+                    ).save()
+                    semester += 1; course_list = []
             if row['졸업일자'] == 'NULL':
                 graduate = None
             else:
@@ -22,19 +32,25 @@ def read_csv():
                     graduate = row['졸업일자'][2:4] + '1'
                 else:
                     graduate = row['졸업일자'][2:4] + '2'
-            taken = Taken.objects.create(
+            grade = make_grade()
+            Taken.objects.create(
                 semester = semester,
                 major = Major.objects.get(name=row['학과']),
                 student_id = row['학번'][2:],
+                credit = int(row['학']),
                 course = Course.objects.get_or_create(name=row['과목명'])[0],
                 professor = row['교수명'],
                 year = int(row['연도']),
                 front_code = row['전산코드'].split('.')[0],
                 back_code = row['전산코드'].split('.')[1],
                 graduate = graduate,
-                grade = make_grade()
-            )
-            taken.save()
+                grade = grade
+            ).save()
+            course_list.append({
+                'course_name': row['과목명'],
+                'grade': grade,
+                'credit': int(row['학'])
+            })
         
 
 def make_grade():
