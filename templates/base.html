@@ -32,7 +32,7 @@
                             let aaa = $('<a>')
                             aaa.attr('class','item')
                             aaa.html(item['code']+' '+item['name'])
-                            aaa.on('click',()=>{location.href="search/?course_code="+item['code']})
+                            aaa.on('click',()=>{location.href="data/?course_code="+item['code']})
                           }
                       }
                   },error:function(error){
