@@ -128,12 +128,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-
-STATICFILES_STORAGE = 'RoyalRoad.storages.StaticAzureStorage' # FIXME: 프로젝트 내, storages 지정
-DEFAULT_FILE_STORAGE = 'RoyalRoad.storages.MediaAzureStorage' # FIXME: 프로젝트 내, storages 지정
-# 설정 / 액세스 키
-
-AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME', '')
-AZURE_ACCOUNT_KEY = os.environ.get('AZURE_ACCOUNT_KEY', '')
-AZURE_CONTAINER = os.environ.get('AZURE_CONTAINER', '') # static 파일 저장/서빙용 컨테이너
-AZURE_MEDIA_CONTAINER = os.environ.get('AZURE_MEDIA_CONTAINER', '') # media 파일 저장/서빙용 커스텀 컨테이너
