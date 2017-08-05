@@ -46,3 +46,14 @@ def main():
                     continue
                 Data.objects.create(rate=r[0] * -1, diff=diff, taken_course=taken_course_name, related_course=r[1])
 
+
+def add_code():
+    for data in Data.objects.all():
+        taken_course_name = data.taken_course
+        related_course_name = data.related_course
+        taken_course = Course.objects.get(name=taken_course_name)
+        related_course = Course.objects.get(name=related_course_name)
+
+        data.taken_course_code = taken_course.code
+        data.related_course_code = related_course.code
+        data.save()

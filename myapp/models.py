@@ -38,3 +38,5 @@ class Data(models.Model):
     diff = models.IntegerField()
     taken_course = models.CharField(max_length=100)
     related_course = models.CharField(max_length=100)
+    take_course_code = models.CharField(max_length=10, default="")
+    related_course_code = models.CharField(max_length=10, default="")
