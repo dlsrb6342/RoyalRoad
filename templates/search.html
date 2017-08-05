@@ -51,31 +51,130 @@
 
     function after_result(result){
       $('#main').empty()
-     let after_result = dummy;
-     let header_div= $('<div>')
-     header_div.attr('class',"ui blue center aligned header")
-     header_div.attr('style',"font-size:3em; margin:auto ;width:50%")
-     let current_div=$('<i class="left chevron icon"></i>'+
-     '<div class="content"><i class="desktop icon"></i>'+
-          result[0].name+'</div><i class="right chevron yellow icon"></i>')
-     current_div.appendTo(header_div)
-     header_div.appendTo('#main')
-     let before_one=$('<div class="ui horizontal divider">다음 학기 들은 수업</div>')
-     let before_two=$('<div class="ui horizontal divider">다다음 학기 들은 수업</div>')
-     let before_one=$('<div class="ui horizontal divider">다다다음 학기 들은 수업</div>')
-     before_one.appendTo('#main')
-     grid_maker(result[1]).appendTo('#main')
-     gird_maker(result[2]).appendTo('#main')
-
+      let after_result = result;
+      let header_div= $('<div>')
+      header_div.attr('class',"ui blue center aligned header")
+      header_div.attr('style',"font-size:3em; margin:auto ;width:50%")
+      let current_div=$('<i class="left chevron icon"></i>'+
+        '<div class="content"><i class="desktop icon"></i>'+
+        result[0].name+'</div><i class="right chevron yellow icon"></i>')
+      current_div.appendTo(header_div)
+      header_div.appendTo('#main')
+      let before_one=$('<div class="ui horizontal divider">다음 학기 들은 수업</div>')
+      let before_two=$('<div class="ui horizontal divider">다다음 학기 들은 수업</div>')
+      let before_three=$('<div class="ui horizontal divider">다다다음 학기 들은 수업</div>')
+      before_one.appendTo('#main')
+      grid_maker(result[1]).appendTo('#main')
+      before_two.appendTo('#main')
+      grid_maker(result[2]).appendTo('#main')
+      before_three.appendTo('#main')
+      grid_maker(result[3]).appendTo('#main')
     }
     function before_result(result){
-
+      $('#main').empty()
+      let after_result = result;
+      let header_div= $('<div>')
+      header_div.attr('class',"ui blue center aligned header")
+      header_div.attr('style',"font-size:3em; margin:auto ;width:50%")
+      let current_div=$('<i class="left chevron yellow icon"></i>'+
+        '<div class="content"><i class="desktop icon"></i>'+
+        result[0].name+'</div><i class="right chevron icon"></i>')
+      current_div.appendTo(header_div)
+      header_div.appendTo('#main')
+      let before_one=$('<div class="ui horizontal divider">전 학기 들은 수업</div>')
+      let before_two=$('<div class="ui horizontal divider">전전 학기 들은 수업</div>')
+      let before_three=$('<div class="ui horizontal divider">전전전 학기 들은 수업</div>')
+      before_one.appendTo('#main')
+      grid_maker(result[1]).appendTo('#main')
+      before_two.appendTo('#main')
+      grid_maker(result[2]).appendTo('#main')
+      before_three.appendTo('#main')
+      grid_maker(result[3]).appendTo('#main')
     }
     function whole_result(result){
+      $('#main').empty()
+      let whole_result = result;
+      let header_div= $('<div>')
+      header_div.attr('class',"ui blue center aligned header")
+      header_div.attr('style',"font-size:3em; margin:auto ;width:50%")
+      let current_div=$('<i class="left chevron yellow icon"></i>'+
+        '<div class="content"><i class="desktop icon"></i>'+
+        result[0].name+'</div><i class="right chevron yellow icon"></i>')
+      current_div.appendTo(header_div)
+      header_div.appendTo('#main')
+      let before_one=$('<div class="ui horizontal divider">전 학기 들은 수업</div>')
+      let before_two=$('<div class="ui horizontal divider">전전 학기 들은 수업</div>')
+      let before_three=$('<div class="ui horizontal divider">전전전 학기 들은 수업</div>')
+      before_three.appendTo('#main')
+      grid_maker(result[1]).appendTo('#main')
+      before_two.appendTo('#main')
+      grid_maker(result[2]).appendTo('#main')
+      before_one.appendTo('#main')
+      grid_maker(result[3]).appendTo('#main')
+
+      let current_one=$('<div class="ui horizontal divider">같은 학기 들은 수업</div>')
+      grid_make(result[3]).appendTo('#main')
+
+      let before_one=$('<div class="ui horizontal divider">다음 학기 들은 수업</div>')
+      let before_two=$('<div class="ui horizontal divider">다다음 학기 들은 수업</div>')
+      let before_three=$('<div class="ui horizontal divider">다다다음 학기 들은 수업</div>')
+      before_one.appendTo('#main')
+      grid_maker(result[1]).appendTo('#main')
+      before_two.appendTo('#main')
+      grid_maker(result[2]).appendTo('#main')
+      before_three.appendTo('#main')
+      grid_maker(result[3]).appendTo('#main')
 
     }
     function grid_maker(subresult){
+      let grid_div = $('<div>')
+      grid_div.attr('class','ui grid')
+      let column_one = $('<div class="four wide column">'+'
+        <h2 class="ui icon header">'+'
+          <i class="trophy yellow icon"></i>'+'
+          <div class="content">'+subresult[1].name
+            '<div class="sub header">'+'
+              <a>이전학기</a>  or <a>다음학기</a>'+'
+            </div>'+'
+          </div>'+'
+        </h2>'+'
+      </div>')
+      let column_two = $('<div class="four wide column">'+'
+        <h2 class="ui icon header">'+'
+          <i class="trophy grey icon"></i>'+'
+          <div class="content">'+subresult[2].name
+            '<div class="sub header">'+'
+            <a>이전학기</a>  or <a>다음학기</a>'+'
+            </div>'+'
+          </div>'+'
+        </h2>'+'
+      </div>')
+      let column_three = $('<div class="four wide column">'+'
+        <h2 class="ui icon header">'+'
+          <i class="trophy brown icon"></i>'+'
+          <div class="content">'+subresult[3].name
+            '<div class="sub header">'+'
+            <a>이전학기</a>  or <a>다음학기</a>'+'
+            </div>'+'
+          </div>'+'
+        </h2>'+'
+      </div>')
+      let column_four = $('<div class="four wide column">'+'
+        <h2 class="ui icon header">'+'
+          <i class="foursquaure icon"></i>'+'
+          <div class="content">'+subresult[1].name
+            '<div class="sub header">'+'
+            <a>이전학기</a>  or <a>다음학기</a>'+'
+            </div>'+'
+          </div>'+'
+        </h2>'+'
+      </div>')
+      column_one.appendTo(grid_div)
+      column_two.appendTo(grid_div)
+      column_three.appendTo(grid_div)
+      column_four.appendTo(grid_div)
 
+      return grid_div
     }
 
   </script>
@@ -109,7 +208,7 @@
 </div>
 <div class="pusher">
   <div id="main" class="ui fluid container">
-    <div class="ui blue center aligned header" style="font-size:3em; margin:auto ;width:50%">
+    <div class="ui center aligned header" style="font-size:3em; margin:auto ;width:50%">
       <i class="left chevron icon"></i>
       <div class="content"><i class="desktop icon"></i>CS374 Intro to HCI</div>
       <i class="right chevron yellow icon"></i>
@@ -122,7 +221,7 @@
           <div class="content">
             CS330 운영체제 및 실험
             <div class="sub header">
-              <a><-Before--|</a> <a>|--After-></a>
+              <a>이전학기</a>  or <a>다음학기</a>
             </div>
           </div>
         </h2>
@@ -133,7 +232,7 @@
           <div class="content">
             CS330 운영체제 및 실험
             <div class="sub header">
-              <a><-Before--|</a> <a>|--After-></a>
+              <a>← </a>  <a> →</a>
             </div>
           </div>
         </h2>
@@ -144,7 +243,7 @@
           <div class="content">
             CS330 운영체제 및 실험
             <div class="sub header">
-              <a><-Before--|</a> <a>|--After-></a>
+              <a>← </a>  <a> →</a>
             </div>
           </div>
         </h2>
@@ -155,7 +254,7 @@
           <div class="content">
             CS330 운영체제 및 실험
             <div class="sub header">
-              <a><-Before--|</a> <a>|--After-></a>
+              <a>← </a>  <a> →</a>
             </div>
           </div>
         </h2>
@@ -169,7 +268,7 @@
           <div class="content">
             CS330 운영체제 및 실험
             <div class="sub header">
-              <a><-Before--|</a> <a>|--After-></a>
+              <a>← </a>  <a> →</a>
             </div>
           </div>
         </h2>
@@ -180,7 +279,7 @@
           <div class="content">
             CS330 운영체제 및 실험
             <div class="sub header">
-              <a><-Before--|</a> <a>|--After-></a>
+              <a>← </a>  <a> →</a>
             </div>
           </div>
         </h2>
@@ -191,7 +290,7 @@
           <div class="content">
             CS330 운영체제 및 실험
             <div class="sub header">
-              <a><-Before--|</a> <a>|--After-></a>
+              <a>← </a>  <a> →</a>
             </div>
           </div>
         </h2>
@@ -202,7 +301,7 @@
           <div class="content">
             CS330 운영체제 및 실험
             <div class="sub header">
-              <a><-Before--|</a> <a>|--After-></a>
+              <a>← </a>  <a> →</a>
             </div>
           </div>
         </h2>
@@ -216,7 +315,7 @@
           <div class="content">
             CS330 운영체제 및 실험
             <div class="sub header">
-              <a><-Before--|</a> <a>|--After-></a>
+              <a>← </a>  <a> →</a>
             </div>
           </div>
         </h2>
@@ -227,7 +326,7 @@
           <div class="content">
             CS330 운영체제 및 실험
             <div class="sub header">
-              <a><-Before--|</a> <a>|--After-></a>
+              <a>← </a>  <a> →</a>
             </div>
           </div>
         </h2>
@@ -238,7 +337,7 @@
           <div class="content">
             CS330 운영체제 및 실험
             <div class="sub header">
-              <a><-Before--|</a> <a>|--After-></a>
+              <a>← </a>  <a> →</a>
             </div>
           </div>
         </h2>
@@ -249,15 +348,12 @@
           <div class="content">
             CS330 운영체제 및 실험
             <div class="sub header">
-              <a><-Before--|</a> <a>|--After-></a>
+              <a>← </a>  <a> →</a>
             </div>
           </div>
         </h2>
       </div>
     </div>
-
-    <br><br><br><br>
-
 </div>
 </body>
 </html>
