@@ -5,6 +5,7 @@ from django.db import models
 class Course(models.Model):
     name = models.CharField(max_length=100)
     code = models.CharField(max_length=10)
+    count = models.PositiveIntegerField(default=0)
 
 
 class Major(models.Model):

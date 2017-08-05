@@ -33,12 +33,15 @@ def read_csv():
                 else:
                     graduate = row['졸업일자'][2:4] + '2'
             grade = make_grade()
+            course = Course.objects.get_or_create(name=row['과목명'], code=row['과목번호'])[0]
+            course.count += 1
+            course.save()
             Taken.objects.create(
                 semester = semester,
                 major = Major.objects.get(name=row['학과']),
                 student_id = row['학번'][2:],
                 credit = int(row['학']),
-                course = Course.objects.get_or_create(name=row['과목명'])[0],
+                course = course, 
                 professor = row['교수명'],
                 year = int(row['연도']),
                 front_code = row['전산코드'].split('.')[0],
