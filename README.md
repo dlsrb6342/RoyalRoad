@@ -1,2 +1,2 @@
 # RoyalRoad
-# to find a royal load to a dean's list
+# to find a royal road to a dean's list
