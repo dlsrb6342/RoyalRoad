@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from myapp.serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from haystack.query import SearchQuerySet
 
 
 class DataView(APIView):
@@ -51,4 +52,17 @@ class SearchView(APIView):
         search_string = request.data.get('search_string')
         search_result = search(search_string)
 
-        return Response({'data': search_result})
+        return Response({'data': search_result, 'flag': True})
+
+
+def search(q):
+    sqs_name = SearchQuerySet().autocomplete(name=q)
+    sqs_code = SearchQuerySet().autocomplete(code=q)
+
+    suggestions = []
+
+    for r1, r2 in zip(sqs_name, sqs_code):
+        suggestions.append({ "code": r1.code, "name": r1.name })
+        suggestions.append({ "code": r2.code, "name": r2.name })
+
+    return suggestions
