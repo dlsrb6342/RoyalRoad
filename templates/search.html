@@ -7,12 +7,25 @@
     <!--css and fonts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.7/semantic.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanummyeongjo.css">
     <!--jquery and  semantic scripts-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.7/semantic.min.js"></script>
     <!--custom style-->
      <script>
+     var dummy ={"subjects":[
+       {
+         "name" : "CS374"
+         "type" : 1
+       },
+       {
+         "name" : "CS330"
+         "type" : 1
+       },
+       {
+         "name" : "CS400"
+         "type" : 1
+       }]
+     }
       $(document).ready(function(){
           $('#query').keyup(function(){
               if($('#query').val()=='') {
@@ -35,24 +48,200 @@
                 })
               })
           }); <!-- end-->
+
+    function after_result(result){
+     let after_result()
+
+    }
+    function before_result(result){
+
+    }
+    function whole_result(result){
+
+    }
+
   </script>
   <style type="text/css">
-  <style type="text/css">
-    body > .menu {
-    height: 300px;
+  @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+  body > .pusher{
+    padding-top: 65px;
+    font-family: "Noto Sans KR",sans-serif;
+    font-weight: bold;
   }
+  #main {
+    padding-top: 40px;
+    padding-left : 20px
+  }
+  .ui .grid{
+    font-size:1.5em;
+  }
+
+
   </style>
 </head>
 <body>
-<div class="ui large top fixed secondary menu">
-      <label class="ui huge yellow header item" style="font-family:Lobster;">Royal Load  </label>
+<div class="ui large top fixed borderless menu">
+      <div class="ui huge yellow header item" style="font-family:Lobster;">Royal Road  </div>
       <div class="ui middle aligned icon input item">
           <input type="text" placeholder="Search..." id="query" type="search"/>
           <i class="search icon"></i>
       </div>
-      <br>
-      <br>
-      <div id="auto_result"></div>
+      <p></p>
+      <p></p>
+</div>
+<div class="pusher">
+  <div id="main" class="ui fluid container">
+    <div class="ui blue center aligned header" style="font-size:3em; margin:auto ;width:50%">
+      <i class="left chevron icon"></i>
+      <div class="content"><i class="desktop icon"></i>CS374 Intro to HCI</div>
+      <i class="right chevron yellow icon"></i>
+    </div>
+    <br>
+    <div class="ui horizontal divider">다음 학기 들은 수업</div>
+    <br>
+    <div class="ui grid">
+      <div class="four wide column">
+        <h2 class="ui icon header">
+          <i class="trophy yellow icon"></i>
+          <div class="content">
+            CS330 운영체제 및 실험
+            <div class="sub header">
+              <a><-Before--|</a> <a>|--After-></a>
+            </div>
+          </div>
+        </h2>
+      </div>
+      <div class="four wide column">
+        <h2 class="ui icon header">
+          <i class="trophy grey icon"></i>
+          <div class="content">
+            CS330 운영체제 및 실험
+            <div class="sub header">
+              <a><-Before--|</a> <a>|--After-></a>
+            </div>
+          </div>
+        </h2>
+      </div>
+      <div class="four wide column">
+        <h2 class="ui icon header">
+          <i class="trophy brown icon"></i>
+          <div class="content">
+            CS330 운영체제 및 실험
+            <div class="sub header">
+              <a><-Before--|</a> <a>|--After-></a>
+            </div>
+          </div>
+        </h2>
+      </div>
+      <div class="four wide column">
+        <h2 class="ui icon header">
+          <i class="foursquare icon"></i>
+          <div class="content">
+            CS330 운영체제 및 실험
+            <div class="sub header">
+              <a><-Before--|</a> <a>|--After-></a>
+            </div>
+          </div>
+        </h2>
+      </div>
+    </div>
+    <div class="ui horizontal divider">다다음 학기 들은 수업</div>
+    <div class="ui grid">
+      <div class="four wide column">
+        <h2 class="ui icon header">
+          <i class="trophy yellow icon"></i>
+          <div class="content">
+            CS330 운영체제 및 실험
+            <div class="sub header">
+              <a><-Before--|</a> <a>|--After-></a>
+            </div>
+          </div>
+        </h2>
+      </div>
+      <div class="four wide column">
+        <h2 class="ui icon header">
+          <i class="trophy grey icon"></i>
+          <div class="content">
+            CS330 운영체제 및 실험
+            <div class="sub header">
+              <a><-Before--|</a> <a>|--After-></a>
+            </div>
+          </div>
+        </h2>
+      </div>
+      <div class="four wide column">
+        <h2 class="ui icon header">
+          <i class="trophy brown icon"></i>
+          <div class="content">
+            CS330 운영체제 및 실험
+            <div class="sub header">
+              <a><-Before--|</a> <a>|--After-></a>
+            </div>
+          </div>
+        </h2>
+      </div>
+      <div class="four wide column">
+        <h2 class="ui icon header">
+          <i class="foursquare icon"></i>
+          <div class="content">
+            CS330 운영체제 및 실험
+            <div class="sub header">
+              <a><-Before--|</a> <a>|--After-></a>
+            </div>
+          </div>
+        </h2>
+      </div>
+    </div>
+    <div class="ui horizontal divider">다다다음 학기 들은 수업</div>
+    <div class="ui grid">
+      <div class="four wide column">
+        <h2 class="ui icon header">
+          <i class="trophy yellow icon"></i>
+          <div class="content">
+            CS330 운영체제 및 실험
+            <div class="sub header">
+              <a><-Before--|</a> <a>|--After-></a>
+            </div>
+          </div>
+        </h2>
+      </div>
+      <div class="four wide column">
+        <h2 class="ui icon header">
+          <i class="trophy grey icon"></i>
+          <div class="content">
+            CS330 운영체제 및 실험
+            <div class="sub header">
+              <a><-Before--|</a> <a>|--After-></a>
+            </div>
+          </div>
+        </h2>
+      </div>
+      <div class="four wide column">
+        <h2 class="ui icon header">
+          <i class="trophy brown icon"></i>
+          <div class="content">
+            CS330 운영체제 및 실험
+            <div class="sub header">
+              <a><-Before--|</a> <a>|--After-></a>
+            </div>
+          </div>
+        </h2>
+      </div>
+      <div class="four wide column">
+        <h2 class="ui icon header">
+          <i class="foursquare icon"></i>
+          <div class="content">
+            CS330 운영체제 및 실험
+            <div class="sub header">
+              <a><-Before--|</a> <a>|--After-></a>
+            </div>
+          </div>
+        </h2>
+      </div>
+    </div>
+
+    <br><br><br><br>
+
 </div>
 </body>
 </html>

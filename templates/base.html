@@ -7,7 +7,6 @@
     <!--css and fonts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.7/semantic.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanummyeongjo.css">
     <!--jquery and  semantic scripts-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.7/semantic.min.js"></script>
@@ -24,7 +23,7 @@
                   url: '/auto/',
                   data: {
                       'flag': 'auto',
-                      'q': $('#id_q').val(),
+                      'q': $('#query').val(),
                   },
                   success : function(result) {
                       if(result['flag']){}
@@ -45,16 +44,29 @@
 <body>
 <div class="ui middle aligned center aligned grid">
   <div class="column">
-      <label class="ui huge yellow header" style="font-family:Lobster;font-size:6em;">Royal Load</label>
-      <br>
-      <br>
+      <label class="ui huge yellow header" style="font-family:Lobster;font-size:6em;">Royal Road</label>
+      <p></p>
+      <p></p>
       <div class="ui icon input">
           <input type="text" placeholder="Search..." id="query" type="search"/>
           <i class="search icon"></i>
       </div>
-      <br>
-      <br>
-      <div id="auto_result"></div>
+      <p></p>
+      <p></p>
+      <div id="suggested_stat">
+        <button class="circular ui icon yellow button">
+          the Royal Road
+        </button>
+        <button class="circular ui icon yellow button">
+          순서 대로 들어요
+        </button>
+        <button class="circular ui icon yellow button">
+          순서는 내맘대로
+        </button>
+        <button class="circular ui icon yellow button">
+          언제들을까 이건
+        </button>
+      </div>
   </div>
 </div>
 </body>
