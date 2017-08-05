@@ -14,16 +14,16 @@
      <script>
      var dummy ={"subjects":[
        {
-         "name" : "CS374"
-         "type" : 1
+         "name" : "CS374",
+         "type" : "1"
        },
        {
-         "name" : "CS330"
-         "type" : 1
+         "name" : "CS330",
+         "type" : "1"
        },
        {
-         "name" : "CS400"
-         "type" : 1
+         "name" : "CS400",
+         "type" : "1"
        }]
      }
       $(document).ready(function(){
@@ -129,46 +129,32 @@
     function grid_maker(subresult){
       let grid_div = $('<div>')
       grid_div.attr('class','ui grid')
-      let column_one = $('<div class="four wide column">'+'
-        <h2 class="ui icon header">'+'
-          <i class="trophy yellow icon"></i>'+'
-          <div class="content">'+subresult[1].name
-            '<div class="sub header">'+'
-              <a>이전학기</a>  or <a>다음학기</a>'+'
-            </div>'+'
-          </div>'+'
-        </h2>'+'
-      </div>')
-      let column_two = $('<div class="four wide column">'+'
-        <h2 class="ui icon header">'+'
-          <i class="trophy grey icon"></i>'+'
-          <div class="content">'+subresult[2].name
-            '<div class="sub header">'+'
-            <a>이전학기</a>  or <a>다음학기</a>'+'
-            </div>'+'
-          </div>'+'
-        </h2>'+'
-      </div>')
-      let column_three = $('<div class="four wide column">'+'
-        <h2 class="ui icon header">'+'
-          <i class="trophy brown icon"></i>'+'
-          <div class="content">'+subresult[3].name
-            '<div class="sub header">'+'
-            <a>이전학기</a>  or <a>다음학기</a>'+'
-            </div>'+'
-          </div>'+'
-        </h2>'+'
-      </div>')
-      let column_four = $('<div class="four wide column">'+'
-        <h2 class="ui icon header">'+'
-          <i class="foursquaure icon"></i>'+'
-          <div class="content">'+subresult[1].name
-            '<div class="sub header">'+'
-            <a>이전학기</a>  or <a>다음학기</a>'+'
-            </div>'+'
-          </div>'+'
-        </h2>'+'
-      </div>')
+      let column_one = $('<div class="four wide column">'+
+        '<h2 class="ui icon header">'+
+          '<i class="trophy yellow icon"></i>'+
+          '<div class="content">'+subresult[1]["taken_course"]+
+            '<div class="sub header"><a>이전학기</a>  or <a>다음학기</a></div></div></h2></div>')
+      let column_two = $('<div class="four wide column">'+
+        '<h2 class="ui icon header">'+
+          '<i class="trophy grey icon"></i>'+
+          '<div class="content">'+subresult[2]["taken_course"]+
+            '<div class="sub header">'+
+            '<a>이전학기</a>  or <a>다음학기</a>'+
+            '</div></div></h2></div>')
+      let column_three = $('<div class="four wide column">'+
+        '<h2 class="ui icon header">'+
+          '<i class="trophy brown icon"></i>'+
+          '<div class="content">'+subresult[3]["taken_course"]+
+            '<div class="sub header">'+
+            '<a>이전학기</a>  or <a>다음학기</a>'+
+            '</div></div></h2></div>')
+      let column_four = $('<div class="four wide column">'+
+        '<h2 class="ui icon header">'+
+          '<i class="foursquaure icon"></i>'+
+          '<div class="content">'+subresult[4]["taken_course"]+
+            '<div class="sub header">'+
+            '<a>이전학기</a>  or <a>다음학기</a>'+
+            '</div></div></h2></div>')
       column_one.appendTo(grid_div)
       column_two.appendTo(grid_div)
       column_three.appendTo(grid_div)
@@ -179,11 +165,9 @@
 
   </script>
   <style type="text/css">
-  @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
   body > .pusher{
     padding-top: 65px;
-    font-family: "Noto Sans KR",sans-serif;
-    font-weight: bold;
+      font-weight: bold;
   }
   #main {
     padding-top: 40px;
