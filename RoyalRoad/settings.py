@@ -88,7 +88,71 @@ DATABASES = {
 }
 DATABASE_OPTIONS = {'charset': 'utf-8'} 
 
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine',
+        'URL': 'http://125.130.66.85:9200/',
+        'INDEX_NAME': 'eunjeon',
+    },
+}
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
+ELASTICSEARCH_DEFAULT_ANALYZER = 'korean_index'
+ELASTICSEARCH_INDEX_SETTINGS = {
+    'settings': {
+        "analysis": {
+            "analyzer": {
+                "korean_index": {
+                    "type": "custom",
+                    "tokenizer": "mecab_ko_standard_tokenizer"
+                },
+                "korean_query": {
+                    "type": "custom",
+                    "tokenizer": "korean_query_tokenizer"
+                },
+                "ngram_analyzer": {
+                    "type": "custom",
+                    "tokenizer": "standard",
+                    "filter": ["haystack_ngram", "lowercase"]
+                },
+                "edgengram_analyzer": {
+                    "type": "custom",
+                    "tokenizer": "standard",
+                    "filter": ["haystack_edgengram", "lowercase"]
+                }
+            },
+            "tokenizer": {
+                "korean_query_tokenizer": {
+                    "type": "mecab_ko_standard_tokenizer",
+                        "compound_noun_min_length": 100
+                },
+                "haystack_ngram_tokenizer": {
+                    "type": "nGram",
+                    "min_gram": 3,
+                    "max_gram": 15
+                },
+                "haystack_edgengram_tokenizer": {
+                    "type": "edgeNGram",
+                    "min_gram": 1,
+                    "max_gram": 15,
+                    "side": "front"
+                }
+            },
+            "filter": {
+                "haystack_ngram": {
+                    "type": "nGram",
+                    "min_gram": 3,
+                    "max_gram": 15
+                },
+                "haystack_edgengram": {
+                    "type": "edgeNGram",
+                    "min_gram": 1,
+                    "max_gram": 15
+                }
+            }
+        }
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
