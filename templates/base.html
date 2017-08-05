@@ -27,7 +27,17 @@
                   success : function(result) {
                       if(result['flag']){
                           console.log(result['data'])
+                          let data = result['data']
+                          for(let item of data){
+                            let aaa = $('<a>')
+                            aaa.attr('class','item')
+                            aaa.html(item['code']+' '+item['name'])
+                            aaa.on('click',()=>{location.href="search/?course_code="+item['code']})
+                          }
+                          let one =
+                          data[0]['code']
                       }
+                      console
                   },error:function(error){
                     console.log(error);
                   }
@@ -52,6 +62,10 @@
           <i class="search icon"></i>
       </div>
       <p></p>
+      <div class="ui horizontal bullet link list" id="results">
+        <a class="item">String1</a>
+        <a class="item">String1</a>
+      <div>
       <p></p>
       <div id="suggested_stat">
         <button class="circular ui icon yellow button">
