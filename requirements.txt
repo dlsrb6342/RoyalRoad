@@ -3,4 +3,4 @@ django-storages
 azure
 pymysql
 pillow
-
+django-allauth
