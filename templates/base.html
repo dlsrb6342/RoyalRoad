@@ -10,21 +10,20 @@
     <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanummyeongjo.css">
     <!--jquery and  semantic scripts-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <!--<script src="/static/js/base.js"></script>-->
     <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.7/semantic.min.js"></script>
     <!--custom style-->
      <script>
       $(document).ready(function(){
-          $('#id_q').keyup(function(){
-              if($('#id_q').val()=='') {
-                  $('#search_result').html('')
+          $('#query').keyup(function(){
+              if($('#query').val()=='') {
+                  $('#auto_result').html('')
                   return;
               }
               $.ajax({
                   type: 'POST',
-                  url: '/searchbase/',
+                  url: '/auto/',
                   data: {
-                      'flag': 'searchbase',
+                      'flag': 'auto',
                       'q': $('#id_q').val(),
                   },
                   success : function(result) {
@@ -50,12 +49,12 @@
       <br>
       <br>
       <div class="ui icon input">
-          <input type="text" placeholder="Search..." id="id_q" type="search"/>
+          <input type="text" placeholder="Search…" id="query" type="search"/>
           <i class="search icon"></i>
       </div>
       <br>
       <br>
-      <div id="search_result"></div>
+      <div id="auto_result"></div>
   </div>
 </div>
 </body>
