@@ -110,6 +110,9 @@
             grid_maker(result['-2']).appendTo('#main')
             before_three.appendTo('#main')
             grid_maker(result['-3']).appendTo('#main')
+
+            $('#before_'+result['course_code']).on('click',()=>{before_result(result['course_code'])})
+            $('#after_'+result['course_code']).on('click',()=>{after_result(result['course_code'])})
       }
       ,error:function(error){
         console.log(error);
@@ -131,9 +134,9 @@
             let header_div= $('<div>')
             header_div.attr('class',"ui blue center aligned header")
             header_div.attr('style',"font-size:3em; margin:auto ;width:50%")
-            let current_div=$('<i id="before_'+result["course_code"]+'" class="left chevron yellow icon"></i>'+
+            let current_div=$('<i id="before_'+result['course_code']+'" class="left chevron yellow icon"></i>'+
               '<div class="content"><i class="desktop icon"></i>'+
-              result['course_name']+'</div><i id="after_'+result["course_code"]+'"class="right chevron yellow icon"></i>')
+              result['course_name']+'</div><i id="after_'+result['course_code']+'"class="right chevron yellow icon"></i>')
             current_div.appendTo(header_div)
             header_div.appendTo('#main')
             let before_one=$('<div class="ui horizontal divider">전 학기 들은 수업</div>')
