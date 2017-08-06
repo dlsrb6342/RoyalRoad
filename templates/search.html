@@ -34,12 +34,21 @@
                   type: 'POST',
                   url: '/auto/',
                   data: {
-                      'flag': 'auto',
                       'q': $('#id_q').val(),
                   },
                   success : function(result) {
-                      if(result['flag']){}
-                          $("#search_result").html(string)
+                      if(result['flag']){
+                          $('#results').html('')
+                          let data = result['data']
+                          for(let item of data){
+                            let aaa = $('<a>')
+                            aaa.attr('class','item')
+                            aaa.html(item['code']+' '+item['name'])
+                            aaa.on('click',()=>{location.href="data/?course_code="+item['code']})
+                            aaa.appendTo('#results')
+                          }
+                      }
+                      
                   },error:function(error){
                     console.log(error);
                   }
@@ -75,6 +84,7 @@
             before_three.appendTo('#main')
             grid_maker(result['3']).appendTo('#main')
 
+            $('#before_'+result['course_code']).on('click',()=>{before_result(result['course_code'])})
             $('#after_'+result['course_code']).on('click',()=>{after_result(result['course_code'])})
               }
           ,error:function(error){
@@ -179,27 +189,27 @@
         '<h2 class="ui icon header">'+
           '<i class="trophy yellow icon"></i>'+
           '<div class="content">'+subresult[0]["related_course"]+
-            '<div class="sub header"><a>이전학기</a>  or <a>다음학기</a></div></div></h2></div>')
+            '<div class="sub header"><a onclick="return before_result(\''+subresult[0]['related_course_code']+'\')">이전학기</a>  or <a onclick="return after_result(\''+subresult[0]['related_course_code']+'\')">다음학기</a></div></div></h2></div>')
       let column_two = $('<div class="four wide column">'+
         '<h2 class="ui icon header">'+
           '<i class="trophy grey icon"></i>'+
           '<div class="content">'+subresult[1]["related_course"]+
             '<div class="sub header">'+
-            '<a>이전학기</a>  or <a>다음학기</a>'+
+            '<a onclick="return before_result(\''+subresult[1]['related_course_code']+'\')">이전학기</a>  or <a onclick="return after_result(\''+subresult[1]['related_course_code']+'\')">다음학기</a>'+
             '</div></div></h2></div>')
       let column_three = $('<div class="four wide column">'+
         '<h2 class="ui icon header">'+
           '<i class="trophy brown icon"></i>'+
           '<div class="content">'+subresult[2]["related_course"]+
             '<div class="sub header">'+
-            '<a>이전학기</a>  or <a>다음학기</a>'+
+            '<a onclick="return before_result(\''+subresult[2]['related_course_code']+'\')">이전학기</a>  or <a onclick="return after_result(\''+subresult[2]['related_course_code']+'\')">다음학기</a>'+
             '</div></div></h2></div>')
       let column_four = $('<div class="four wide column">'+
         '<h2 class="ui icon header">'+
           '<i class="arrow down icon"></i>'+
           '<div class="content">'+subresult[3]["related_course"]+
             '<div class="sub header">'+
-            '<a>이전학기</a>  or <a>다음학기</a>'+
+            '<a onclick="return before_result(\''+subresult[3]['related_course_code']+'\')">이전학기</a>  or <a onclick="return after_result(\''+subresult[3]['related_course_code']+'\')">다음학기</a>'+
             '</div></div></h2></div>')
       column_one.appendTo(grid_div)
       column_two.appendTo(grid_div)
