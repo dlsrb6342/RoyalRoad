@@ -66,21 +66,19 @@
           },
           success : function(result) {
             $('#main').empty()
-            let header_div= $('<div>')
-            header_div.attr('id','mainsub')
-            header_div.attr('class',"ui blue center aligned header")
-            let current_div=$('<i id="before_'+result["course_code"]+'" class="left chevron icon"></i>'+
-              '<div class="content"><i class="desktop icon"></i>'+
-              result['course_name']+'</div><i id="after_'+result["course_code"]+'"class="right chevron yellow icon"></i>')
-
+            let header_div= $('<h1>')
+            header_div.attr('style','text-align:center')
+            let current_div=$('<a id="before_'+result['course_code']+'">이전 학기들 </a>'+'☆☆'+
+              result['course_code']+  result['course_name']+'☆☆'+
+              '<a id="after_'+result['course_code']+'"> 다음 학기들</a>')
             current_div.appendTo(header_div)
             header_div.appendTo('#main')
+
 
             for(var i=1;i<4;i++){
               let divider = $('<div class="ui horizontal divider">'+i+' 학기 후 들은 수업</div>')
               divider.appendTo('#main')
               grid_maker(result[i]).appendTo('#main')
-              )
             }
 
             $('#before_'+result['course_code']).on('click',()=>{before_result(result['course_code'])})
@@ -102,23 +100,19 @@
           },
           success : function(result) {
             $('#main').empty()
-            let header_div= $('<div>')
-            header_div.attr('class',"ui blue center aligned header")
-            header_div.attr('style',"font-size:3em; margin:auto ;width:50%")
-            let current_div=$('<i id="before_'+result["course_code"]+'" class="left chevron yellow icon"></i>'+
-              '<div class="content"><i  class="desktop icon"></i>'+
-              result['course_name']+'</div><i id="after_'+result["course_code"]+'"class="right chevron icon"></i>')
+            let header_div= $('<h1>')
+            header_div.attr('style','text-align:center')
+            let current_div=$('<a id="before_'+result['course_code']+'">이전 학기들 </a>'+'☆☆'+
+              result['course_code']+  result['course_name']+'☆☆'+
+              '<a id="after_'+result['course_code']+'"> 다음 학기들</a>')
             current_div.appendTo(header_div)
             header_div.appendTo('#main')
-            let before_one=$('<div class="ui horizontal divider">전 학기 들은 수업</div>')
-            let before_two=$('<div class="ui horizontal divider">전전 학기 들은 수업</div>')
-            let before_three=$('<div class="ui horizontal divider">전전전 학기 들은 수업</div>')
-            before_one.appendTo('#main')
-            grid_maker(result['-1']).appendTo('#main')
-            before_two.appendTo('#main')
-            grid_maker(result['-2']).appendTo('#main')
-            before_three.appendTo('#main')
-            grid_maker(result['-3']).appendTo('#main')
+
+            for(var i=-1;i>-4;i--){
+              let divider = $('<div class="ui horizontal divider">'+-i+' 학기 전 들은 수업</div>')
+              divider.appendTo('#main')
+              grid_maker(result[i]).appendTo('#main')
+            }
 
             $('#before_'+result['course_code']).on('click',()=>{before_result(result['course_code'])})
             $('#after_'+result['course_code']).on('click',()=>{after_result(result['course_code'])})
@@ -138,39 +132,29 @@
           },
           success : function(result) {
             $('#main').empty()
-            console.log(result);
-            let whole_result = result;
-            let header_div= $('<div>')
-            header_div.attr('class',"ui blue center aligned header")
-            header_div.attr('style',"font-size:3em; margin:auto ;width:50%")
-            let current_div=$('<i id="before_'+result['course_code']+'" class="left chevron yellow icon"></i>'+
-              '<div class="content"><i class="desktop icon"></i>'+
-              result['course_name']+'</div><i id="after_'+result['course_code']+'"class="right chevron yellow icon"></i>')
+            let header_div= $('<h1>')
+            header_div.attr('style','text-align:center')
+            let current_div=$('<a id="before_'+result['course_code']+'">이전 학기들 </a>'+'☆☆'+
+              result['course_code']+  result['course_name']+'☆☆'+
+              '<a id="after_'+result['course_code']+'"> 다음 학기들</a>')
             current_div.appendTo(header_div)
             header_div.appendTo('#main')
-            let before_one=$('<div class="ui horizontal divider">전 학기 들은 수업</div>')
-            let before_two=$('<div class="ui horizontal divider">전전 학기 들은 수업</div>')
-            let before_three=$('<div class="ui horizontal divider">전전전 학기 들은 수업</div>')
-            before_three.appendTo('#main')
-            grid_maker(result['-3']).appendTo('#main')
-            before_two.appendTo('#main')
-            grid_maker(result['-2']).appendTo('#main')
-            before_one.appendTo('#main')
-            grid_maker(result['-1']).appendTo('#main')
 
-            let current_one=$('<div class="ui horizontal blue divider">같은 학기 들은 수업</div>')
+            let current_one=$('<div class="ui horizontal divider">같은 학기 들은 수업</div>')
             current_one.appendTo('#main')
             grid_maker(result['0']).appendTo('#main')
 
-            let after_one=$('<div class="ui horizontal divider">다음 학기 들은 수업</div>')
-            let after_two=$('<div class="ui horizontal divider">다다음 학기 들은 수업</div>')
-            let after_three=$('<div class="ui horizontal divider">다다다음 학기 들은 수업</div>')
-            after_one.appendTo('#main')
-            grid_maker(result['1']).appendTo('#main')
-            after_two.appendTo('#main')
-            grid_maker(result['2']).appendTo('#main')
-            after_three.appendTo('#main')
-            grid_maker(result['3']).appendTo('#main')
+            for(var i=1;i<4;i++){
+              let divider = $('<div class="ui horizontal divider">'+i+' 학기 후 들은 수업</div>')
+              divider.appendTo('#main')
+              grid_maker(result[i]).appendTo('#main')
+            }
+
+            for(var i=-1;i>-4;i--){
+              let divider = $('<div class="ui horizontal divider">'+-i+' 학기 전 들은 수업</div>')
+              divider.appendTo('#main')
+              grid_maker(result[i]).appendTo('#main')
+            }
 
             $('#before_'+result['course_code']).on('click',()=>{before_result(result['course_code'])})
             $('#after_'+result['course_code']).on('click',()=>{after_result(result['course_code'])})
@@ -183,12 +167,14 @@
         }
     function grid_maker(subresult){
       let grid_div = $('<div>')
-      grid_div.attr('class','ui grid')
+      grid_div.attr('class','ui center aligned grid')
       for(let col of subresult){
         let column =  $('<div class="four wide column">'+
-          '<h2 class="ui header">'+
+          '<h2 class="ui blue header">'+
             '<div class="content">'+col["related_course"]+
-              '<div class="sub header"></div></div></h2></div>')
+              '<div class="sub header">'+
+              Math.round(col["rate"]*100) +'\%'+
+              '</div></div></h2></div>')
               column.appendTo(grid_div)
       }
 
@@ -210,11 +196,8 @@
       padding-top: 40px;
       padding-left : 20px
     }
-
     #mainsub{
-      font-size:3em;
-      margin:auto;
-      width:50%
+
     }
 
   </style>
