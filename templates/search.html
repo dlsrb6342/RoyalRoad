@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <!--css and fonts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.7/semantic.min.css">
-    <link rel="stylesheet" type="text/css" href="search.css">
+    <link rel="stylesheet" type="text/css" href="/search.css">
     <!--jquery and  semantic scripts-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.7/semantic.min.js"></script>
@@ -73,17 +73,16 @@
             let current_div=$('<i id="before_'+result["course_code"]+'" class="left chevron icon"></i>'+
               '<div class="content"><i class="desktop icon"></i>'+
               result['course_name']+'</div><i id="after_'+result["course_code"]+'"class="right chevron yellow icon"></i>')
+
             current_div.appendTo(header_div)
             header_div.appendTo('#main')
-            let before_one=$('<div class="ui horizontal divider"> 다음 학기 들은 수업</div>')
-            let before_two=$('<div class="ui horizontal divider">다다음 학기 들은 수업</div>')
-            let before_three=$('<div class="ui horizontal divider">다다다음 학기 들은 수업</div>')
-            before_one.appendTo('#main')
-            grid_maker(result['1']).appendTo('#main')
-            before_two.appendTo('#main')
-            grid_maker(result['2']).appendTo('#main')
-            before_three.appendTo('#main')
-            grid_maker(result['3']).appendTo('#main')
+
+            for(int i=1;i<4;i++){
+              let divider = $('<div class="ui horizontal divider">'+i+' 학기 후 들은 수업</div>')
+              divider.appendTo('#main')
+              grid_maker(result[i]).appendTo('#main')
+              )
+            }
 
             $('#before_'+result['course_code']).on('click',()=>{before_result(result['course_code'])})
             $('#after_'+result['course_code']).on('click',()=>{after_result(result['course_code'])})
