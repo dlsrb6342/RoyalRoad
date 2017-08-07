@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <!--css and fonts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.7/semantic.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
     <!--jquery and  semantic scripts-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.7/semantic.min.js"></script>
@@ -15,7 +15,8 @@
 
       $(document).ready(function(){
         function getQuerystring(paramName)
-        { var _tempUrl = window.location.search.substring(1);
+        {
+           var _tempUrl = window.location.search.substring(1);
           var _tempArray = _tempUrl.split('&');
           for(var i = 0; _tempArray.length; i++)
           { var _keyValuePair = _tempArray[i].split('=');
@@ -48,7 +49,7 @@
                             aaa.appendTo('#results')
                           }
                       }
-                      
+
                   },error:function(error){
                     console.log(error);
                   }
@@ -67,14 +68,14 @@
           success : function(result) {
             $('#main').empty()
             let header_div= $('<div>')
+            header_div.attr('id','mainsub')
             header_div.attr('class',"ui blue center aligned header")
-            header_div.attr('style',"font-size:3em; margin:auto ;width:50%")
             let current_div=$('<i id="before_'+result["course_code"]+'" class="left chevron icon"></i>'+
               '<div class="content"><i class="desktop icon"></i>'+
               result['course_name']+'</div><i id="after_'+result["course_code"]+'"class="right chevron yellow icon"></i>')
             current_div.appendTo(header_div)
             header_div.appendTo('#main')
-            let before_one=$('<div class="ui horizontal divider">다음 학기 들은 수업</div>')
+            let before_one=$('<div class="ui horizontal divider"> 다음 학기 들은 수업</div>')
             let before_two=$('<div class="ui horizontal divider">다다음 학기 들은 수업</div>')
             let before_three=$('<div class="ui horizontal divider">다다다음 학기 들은 수업</div>')
             before_one.appendTo('#main')
@@ -185,56 +186,18 @@
     function grid_maker(subresult){
       let grid_div = $('<div>')
       grid_div.attr('class','ui grid')
-      let column_one = $('<div class="four wide column">'+
-        '<h2 class="ui icon header">'+
-          '<i class="trophy yellow icon"></i>'+
-          '<div class="content">'+subresult[0]["related_course"]+
-            '<div class="sub header"><a onclick="return before_result(\''+subresult[0]['related_course_code']+'\')">이전학기</a>  or <a onclick="return after_result(\''+subresult[0]['related_course_code']+'\')">다음학기</a></div></div></h2></div>')
-      let column_two = $('<div class="four wide column">'+
-        '<h2 class="ui icon header">'+
-          '<i class="trophy grey icon"></i>'+
-          '<div class="content">'+subresult[1]["related_course"]+
-            '<div class="sub header">'+
-            '<a onclick="return before_result(\''+subresult[1]['related_course_code']+'\')">이전학기</a>  or <a onclick="return after_result(\''+subresult[1]['related_course_code']+'\')">다음학기</a>'+
-            '</div></div></h2></div>')
-      let column_three = $('<div class="four wide column">'+
-        '<h2 class="ui icon header">'+
-          '<i class="trophy brown icon"></i>'+
-          '<div class="content">'+subresult[2]["related_course"]+
-            '<div class="sub header">'+
-            '<a onclick="return before_result(\''+subresult[2]['related_course_code']+'\')">이전학기</a>  or <a onclick="return after_result(\''+subresult[2]['related_course_code']+'\')">다음학기</a>'+
-            '</div></div></h2></div>')
-      let column_four = $('<div class="four wide column">'+
-        '<h2 class="ui icon header">'+
-          '<i class="arrow down icon"></i>'+
-          '<div class="content">'+subresult[3]["related_course"]+
-            '<div class="sub header">'+
-            '<a onclick="return before_result(\''+subresult[3]['related_course_code']+'\')">이전학기</a>  or <a onclick="return after_result(\''+subresult[3]['related_course_code']+'\')">다음학기</a>'+
-            '</div></div></h2></div>')
-      column_one.appendTo(grid_div)
-      column_two.appendTo(grid_div)
-      column_three.appendTo(grid_div)
-      column_four.appendTo(grid_div)
+      for(let col of subresult){
+        let column =  $('<div class="four wide column">'+
+          '<h2 class="ui header">'+
+            '<div class="content">'+col["related_course"]+
+              '<div class="sub header"></div></div></h2></div>')
+              column.appendTo(grid_div)
+      }
 
       return grid_div
     }
 
   </script>
-  <style type="text/css">
-  body > .pusher{
-    padding-top: 65px;
-      font-weight: bold;
-  }
-  #main {
-    padding-top: 40px;
-    padding-left : 20px
-  }
-  .ui .grid{
-    font-size:1.5em;
-  }
-
-
-  </style>
 </head>
 <body>
 <div class="ui large top fixed borderless menu">
@@ -248,152 +211,7 @@
 </div>
 <div class="pusher">
   <div id="main" class="ui fluid container">
-    <div class="ui center aligned header" style="font-size:3em; margin:auto ;width:50%">
-      <i class="left chevron icon"></i>
-      <div class="content"><i class="desktop icon"></i>CS374 Intro to HCI</div>
-      <i class="right chevron yellow icon"></i>
-    </div>
-    <div class="ui horizontal divider">다음 학기 들은 수업</div>
-    <div class="ui grid">
-      <div class="four wide column">
-        <h2 class="ui icon header">
-          <i class="trophy yellow icon"></i>
-          <div class="content">
-            CS330 운영체제 및 실험
-            <div class="sub header">
-              <a>이전학기</a>  or <a>다음학기</a>
-            </div>
-          </div>
-        </h2>
-      </div>
-      <div class="four wide column">
-        <h2 class="ui icon header">
-          <i class="trophy grey icon"></i>
-          <div class="content">
-            CS330 운영체제 및 실험
-            <div class="sub header">
-              <a>← </a>  <a> →</a>
-            </div>
-          </div>
-        </h2>
-      </div>
-      <div class="four wide column">
-        <h2 class="ui icon header">
-          <i class="trophy brown icon"></i>
-          <div class="content">
-            CS330 운영체제 및 실험
-            <div class="sub header">
-              <a>← </a>  <a> →</a>
-            </div>
-          </div>
-        </h2>
-      </div>
-      <div class="four wide column">
-        <h2 class="ui icon header">
-          <i class="foursquare icon"></i>
-          <div class="content">
-            CS330 운영체제 및 실험
-            <div class="sub header">
-              <a>← </a>  <a> →</a>
-            </div>
-          </div>
-        </h2>
-      </div>
-    </div>
-    <div class="ui horizontal divider">다다음 학기 들은 수업</div>
-    <div class="ui grid">
-      <div class="four wide column">
-        <h2 class="ui icon header">
-          <i class="trophy yellow icon"></i>
-          <div class="content">
-            CS330 운영체제 및 실험
-            <div class="sub header">
-              <a>← </a>  <a> →</a>
-            </div>
-          </div>
-        </h2>
-      </div>
-      <div class="four wide column">
-        <h2 class="ui icon header">
-          <i class="trophy grey icon"></i>
-          <div class="content">
-            CS330 운영체제 및 실험
-            <div class="sub header">
-              <a>← </a>  <a> →</a>
-            </div>
-          </div>
-        </h2>
-      </div>
-      <div class="four wide column">
-        <h2 class="ui icon header">
-          <i class="trophy brown icon"></i>
-          <div class="content">
-            CS330 운영체제 및 실험
-            <div class="sub header">
-              <a>← </a>  <a> →</a>
-            </div>
-          </div>
-        </h2>
-      </div>
-      <div class="four wide column">
-        <h2 class="ui icon header">
-          <i class="foursquare icon"></i>
-          <div class="content">
-            CS330 운영체제 및 실험
-            <div class="sub header">
-              <a>← </a>  <a> →</a>
-            </div>
-          </div>
-        </h2>
-      </div>
-    </div>
-    <div class="ui horizontal divider">다다다음 학기 들은 수업</div>
-    <div class="ui grid">
-      <div class="four wide column">
-        <h2 class="ui icon header">
-          <i class="trophy yellow icon"></i>
-          <div class="content">
-            CS330 운영체제 및 실험
-            <div class="sub header">
-              <a>← </a>  <a> →</a>
-            </div>
-          </div>
-        </h2>
-      </div>
-      <div class="four wide column">
-        <h2 class="ui icon header">
-          <i class="trophy grey icon"></i>
-          <div class="content">
-            CS330 운영체제 및 실험
-            <div class="sub header">
-              <a>← </a>  <a> →</a>
-            </div>
-          </div>
-        </h2>
-      </div>
-      <div class="four wide column">
-        <h2 class="ui icon header">
-          <i class="trophy brown icon"></i>
-          <div class="content">
-            CS330 운영체제 및 실험
-            <div class="sub header">
-              <a>← </a>  <a> →</a>
-            </div>
-          </div>
-        </h2>
-      </div>
-      <div class="four wide column">
-        <h2 class="ui icon header">
-          <i class="foursquare icon"></i>
-          <div class="content">
-            CS330 운영체제 및 실험
-            <div class="sub header">
-              <a>← </a>  <a> →</a>
-            </div>
-          </div>
-        </h2>
-      </div>
-    </div>
+  </div>
 </div>
 </body>
 </html>
