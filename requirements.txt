@@ -47,7 +47,7 @@ Django==1.11.4
 django-allauth==0.32.0
 django-haystack==2.6.1
 django-storages==1.6.5
-djangorestframework==3.6.3
+djangorestframework==3.11.2
 elasticsearch==2.1.0
 idna==2.5
 isodate==0.5.4
